@@ -114,7 +114,7 @@ def jcamp_read(filehandle):
             for dataval in datavals[1:]:
                 y.append(float(dataval))
         elif datastart and (('xypoints' in jcamp_dict) or ('xydata' in jcamp_dict)) and (datatype == '(XY..XY)'):
-            datavals = [v.strip() for v in re.split(r"[, ]", line) if v]  ## be careful not to allow empty strings
+            datavals = [v.strip() for v in re.split(r"[, ]", line.strip()) if v]  ## be careful not to allow empty strings
             if not all(is_float(datavals)): continue
             datavals = array(datavals)
             x.extend(datavals[0::2])        ## every other data point starting at the zeroth
